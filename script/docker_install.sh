@@ -51,4 +51,5 @@ sudo chmod +x /usr/local/bin/docker-compose
 sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 docker-compose --version
 
-echo -e "\033[32m please logout and login back \n \033[0m"
+echo -e "\033[32m apply current user to docker group \n \033[0m"
+newgrp docker 
