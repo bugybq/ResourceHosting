@@ -4,7 +4,7 @@ services:
   traefik:
     image: traefik:v2.2
     networks:
-      - app_net1
+      - app_net
     ports:
       - 80:80
       - 443:443
@@ -31,5 +31,5 @@ services:
       - "traefik.http.routers.api.tls.certresolver=certgen"
 
 networks:
-  app_net1:
-    #external: true
+  app_net:
+    external: true
