@@ -1,3 +1,6 @@
+#!/bin/bash
+# install docker and docker-compose
+
 echo -e "\033[32m apt update \n \033[0m"
 sudo apt-get update 
 
@@ -39,5 +42,13 @@ sudo apt-get install -y docker-ce=5:19.03.8~3-0~ubuntu-bionic docker-ce-cli=5:19
 
 echo -e "\033[32m add ubuntu user to docker group \n \033[0m"
 sudo usermod -aG docker ubuntu
+
+
+echo -e "\033[32m download and install docker compose \n \033[0m"
+
+sudo curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+docker-compose --version
 
 echo -e "\033[32m please logout and login back \n \033[0m"
