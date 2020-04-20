@@ -1,1 +1,25 @@
+[entryPoints]
+  [entryPoints.web]
+    address = ":80"
+    [entryPoints.web.http]
+      [entryPoints.web.http.redirections]
+        [entryPoints.web.http.redirections.entryPoint]
+          to = "websecure"
+          scheme = "https"
+  [entryPoints.websecure]
+    address = ":443"
 
+[providers]
+  [providers.docker]
+    endpoint = "unix:///var/run/docker.sock"
+    exposedByDefault = false
+
+[certificatesResolvers]
+  [certificatesResolvers.certgen]
+    [certificatesResolvers.certgen.acme]
+      email = "cert_email"
+      storage = "/etc/traefik/acme/acme.json"
+      caServer = "https://acme-staging-v02.api.letsencrypt.org/directory"
+
+      [certificatesResolvers.certgen.acme.httpChallenge]
+        entryPoint = "web"
