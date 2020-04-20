@@ -23,3 +23,5 @@
 
       [certificatesResolvers.certgen.acme.httpChallenge]
         entryPoint = "web"
+
+[api]
