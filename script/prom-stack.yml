@@ -101,15 +101,17 @@ services:
       - app_net
     user: "472"
     #chown -R 472 grafana on host
-    command: bash -c "
-      chown -R root:root /etc/grafana && \
-      chmod -R a+r /etc/grafana && \
-      chown -R grafana:grafana /var/lib/grafana && \
-      chown -R grafana:grafana /usr/share/grafana
-      "
     deploy:
       placement:
         constraints:
           - node.role==manager
       restart_policy:
-        condition: on-failure
+        condition: on-failure 
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.grafana.rule=Host(`grafana_domain`)"
+      - "traefik.http.routers.grafana.service=grafanasvc"
+      - "traefik.http.services.grafanasvc.loadBalancer.server.port=3000"
+      - "traefik.docker.network=app_net"
+      - "traefik.http.routers.grafana.tls=true"
+      - "traefik.http.routers.grafana.tls.certresolver=certgen"
