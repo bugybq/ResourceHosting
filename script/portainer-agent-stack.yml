@@ -29,7 +29,12 @@ services:
       replicas: 1
       placement:
         constraints: [node.role == manager]
-
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.portainer.rule=Host(`portainer_domain`)"
+      - "traefik.http.routers.portainer.service=portainersvc"
+      - "traefik.http.services.portainersvc.loadBalancer.server.port=9000"
+      - "traefik.docker.network=app_net"
 networks:
   agent_network:
     driver: overlay
