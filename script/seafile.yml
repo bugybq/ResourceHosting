@@ -33,7 +33,7 @@ services:
       - SEAFILE_ADMIN_EMAIL=admin@email.com # Specifies Seafile admin user, default is 'me@example.com'.
       - SEAFILE_ADMIN_PASSWORD=admin_pass     # Specifies Seafile admin password, default is 'asecret'.
       - SEAFILE_SERVER_LETSENCRYPT=false   # Whether use letsencrypt to generate cert.
-      - SEAFILE_SERVER_HOSTNAME=seafile_domain # Specifies your host name.
+      - SEAFILE_SERVER_HOSTNAME=127.0.0.1 # Specifies your host name.
     depends_on:
       - db
       - memcached
