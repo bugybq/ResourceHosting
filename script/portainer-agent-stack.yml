@@ -35,6 +35,8 @@ services:
       - "traefik.http.routers.portainer.service=portainersvc"
       - "traefik.http.services.portainersvc.loadBalancer.server.port=9000"
       - "traefik.docker.network=app_net"
+      - "traefik.http.routers.api.tls=true"
+      - "traefik.http.routers.api.tls.certresolver=certgen"
 networks:
   agent_network:
     driver: overlay
