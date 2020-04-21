@@ -1,19 +1,16 @@
 version: '3.7'
 
-volumes:
-    prometheus_data: {}
-    grafana_data: {}
-
 networks:
-  monitor-net:
+  app_net:
+    external: true
 
 services:
 
   prometheus:
-    image: prom/prometheus
+    image: prom/prometheus:v2.17.2
     volumes:
-      - ./prometheus/:/etc/prometheus/
-      - prometheus_data:/prometheus
+      - /app_data/monitor/prometheus/:/etc/prometheus/
+      - /app_data/monitor/prometheus:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
@@ -24,7 +21,7 @@ services:
     depends_on:
       - cadvisor
     networks:
-      - monitor-net
+      - app_net
     deploy:
       placement:
         constraints:
@@ -46,7 +43,7 @@ services:
     ports:
       - 9100:9100
     networks:
-      - monitor-net
+      - app_net
     deploy:
       mode: global
       restart_policy:
@@ -57,9 +54,9 @@ services:
     ports:
       - 9093:9093
     volumes:
-      - "./alertmanager/:/etc/alertmanager/"
+      - "/app_data/monitor/alertmanager/:/etc/alertmanager/"
     networks:
-      - monitor-net
+      - app_net
     command:
       - '--config.file=/etc/alertmanager/config.yml'
       - '--storage.path=/alertmanager'
@@ -80,26 +77,36 @@ services:
     ports:
       - 8080:8080
     networks:
-      - monitor-net
+      - app_net
     deploy:
       mode: global
       restart_policy:
           condition: on-failure
 
   grafana:
-    image: grafana/grafana
+    image: grafana/grafana:5.1.0
     depends_on:
       - prometheus
     ports:
       - 3000:3000
     volumes:
-      - grafana_data:/var/lib/grafana
-      - ./grafana/provisioning/:/etc/grafana/provisioning/
-    env_file:
-      - ./grafana/config.monitoring
+      - /app_data/monitor/grafana:/var/lib/grafana
+      - /app_data/monitor/grafana/provisioning/:/etc/grafana/provisioning/
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=foobar
+      - GF_USERS_ALLOW_SIGN_UP=false
+      #- GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource
+      #- GF_INSTALL_PLUGINS=http://plugin-domain.com/my-custom-plugin.zip;custom-plugin
     networks:
-      - monitor-net
+      - app_net
     user: "472"
+    #chown -R 472 grafana on host
+    command: bash -c "
+      chown -R root:root /etc/grafana && \
+      chmod -R a+r /etc/grafana && \
+      chown -R grafana:grafana /var/lib/grafana && \
+      chown -R grafana:grafana /usr/share/grafana
+      "
     deploy:
       placement:
         constraints:
