@@ -9,9 +9,9 @@ mkdir -p ./prom/alertmanager ./prom/prometheus \
   ./prom/grafana/provisioning/datasources ./prom/grafana/provisioning/dashboards  \
 
 # ============ downloads lots of files ===============
-wget https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/portainer-agent-stack.yml -N
+wget https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/prom-stack.yml -O prom-stack.yml
 sudo apt instll wget -y
-wget https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/prom_config/list.txt -q
+wget https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/prom_config/list.txt -q -O list.txt
 wget -i list.txt -P ./prom -q
 mv ./prom/config.yml ./prom/alertmanager/config.yml
 mv ./prom/dashboard.yml ./prom/grafana/provisioning/dashboards/dashboard.yml
@@ -38,7 +38,7 @@ chown -R 65534 ./app_data/monitor/prometheus
 
 # ============ install seafile ===============
 echo -e "\033[32m Installing prometheus stack ... \n \033[0m"
-sudo docker stack deploy --compose-file=portainer-agent-stack.yml monitor
+sudo docker stack deploy --compose-file=prom-stack.yml monitor
 
 echo -e "\033[32m Prometheus stack installed... \n \033[0m"
 

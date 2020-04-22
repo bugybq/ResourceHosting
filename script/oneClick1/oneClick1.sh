@@ -3,7 +3,7 @@
 sudo apt install wget -y
 # ============ install docker and compose ===============
 echo -e "\033[32m Install Docker and Docker Compose... \n \033[0m"
-wget https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/docker_install.sh -N
+wget https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/docker_install.sh -O docker_install.sh
 bash docker_install.sh
 
 echo -e "\033[32m Docker/docker-compose installed... \n \n \033[0m"
@@ -26,7 +26,7 @@ fi
 # ============ install portainer ===============
 if [ $key_after_docker == "y" ];then
   rm docker_install.sh
-  wget https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/portainer_install_swarm.sh -N
+  wget https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/portainer_install_swarm.sh -O portainer_install_swarm.sh
   bash ./portainer_install_swarm.sh
 fi
 
@@ -51,7 +51,7 @@ fi
 if [ $key_after_portainer == "y" ];then
   rm portainer_install_swarm.sh
   rm portainer-agent-stack.yml
-  wget https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/traefik_install.sh -N
+  wget https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/traefik_install.sh -O traefik_install.sh
   bash ./traefik_install.sh
 fi
 
@@ -76,9 +76,9 @@ fi
 
 # ============ install seafile ===============
 if [ $key_seafile == "y" ];then
-  rm traefik_ins
+  rm traefik_install.sh
   rm traefik.yml
-  wget https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/seafile_install.sh -N
+  wget https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/seafile_install.sh -O seafile_install.sh
   bash ./seafile_install.sh
 fi
 
@@ -111,10 +111,10 @@ fi
 
 # ============ install prometheus stack ===============
 if [ $key_prom == "y" ];then
-  rm seafile_ins
+  rm seafile_install.sh
   rm seafile.yml
-  wget https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/seafile_install.sh -N
-  bash ./seafile_install.sh
+  wget https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/prom_install_stack.sh -O prom_install_stack.sh
+  bash ./prom_install_stack.sh
 fi
 
 echo -e "\033[32m Access services with urls: \n \033[0m"

@@ -5,7 +5,7 @@ sudo mkdir -p /app_data/seafile/data
 sudo mkdir -p /app_data/seafile/db
 
 # ============ get inputs ===============
-wget https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/seafile.yml -N
+wget https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/seafile.yml -O seafile.yml
 
 echo -e -n "\033[32m Input mySQL DB password : \033[0m"
 read mysql_pass
