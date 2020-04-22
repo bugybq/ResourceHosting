@@ -10,7 +10,7 @@ mkdir -p ./prom/alertmanager ./prom/prometheus \
 
 # ============ downloads lots of files ===============
 wget https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/prom-stack.yml -O prom-stack.yml
-sudo apt instll wget -y
+#sudo apt install wget -y
 wget https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/prom_config/list.txt -q -O list.txt
 wget -i list.txt -P ./prom -q
 mv ./prom/config.yml ./prom/alertmanager/config.yml
@@ -30,7 +30,7 @@ sed -i "s/grafana_domain/$grafana_domain/g" prom-stack.yml
 sed -i "s/grafana_pass/$grafana_pass/g" ./prom/grafana/config.monitoring
 
 # ============ move all config files to /app_data ===============
-mv ./prom/* /app_data/monitor/
+sudo mv ./prom/* /app_data/monitor/
 
 # ============ set folder permissions for grafana and prometheus ===============
 chown -R 472 ./app_data/monitor/grafana
