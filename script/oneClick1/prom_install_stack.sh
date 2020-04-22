@@ -36,9 +36,10 @@ sudo mv ./prom/* /app_data/monitor/
 sudo chown -R 472 /app_data/monitor/grafana/
 sudo chown -R 65534 /app_data/monitor/prometheus/
 
-# ============ install seafile ===============
+# ============ install prom stack ===============
 echo -e "\033[32m Installing prometheus stack ... \n \033[0m"
 sudo docker stack deploy --compose-file=prom-stack.yml monitor
 
 echo -e "\033[32m Prometheus stack installed... \n \033[0m"
 
+rm -rf ./*
