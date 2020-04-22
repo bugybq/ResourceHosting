@@ -28,7 +28,7 @@ if [ $key_after_docker == "y" ];then
   rm docker_install.sh
   curl -L https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/portainer_install_swarm.sh \
     -o portainer_install_swarm.sh
-  bash ./portainer_swarm_install.sh
+  bash ./portainer_install_swarm.sh
 fi
 
 # ============ continue to install traefik? ===============
