@@ -78,7 +78,42 @@ fi
 # ============ install seafile ===============
 if [ $key_seafile == "y" ];then
   rm docker_install.sh
-  curl -L https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/traefik_install.sh \
-    -o traefik_install.sh
-  bash ./traefik_install.sh
+  curl -L https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/seafile_install.sh \
+    -o seafile_install.sh
+  bash ./seafile_install.sh
+fi
+
+# ============ continue to install Prometheus/Grafana for monitoring? ===============
+echo -e -n "\033[32m Continue to install Prometheus/Grafana for monitoring? [yes(y)/no(n)] :  \033[0m"
+read key_prom
+
+while [ $key_prom != "y" ] && [ $key_prom != "n" ] 
+do
+  echo -e -n "\033[32m Continue to install Prometheus/Grafana for monitoring? [yes(y)/no(n)] :  \033[0m"
+  read key_prom
+done
+
+if [ $key_prom == "n" ];then
+  rm seafile_install.sh
+  rm seafile.yml
+  echo -e "\033[32m Access services with urls: \n \033[0m"
+  echo -e "\033[32m   - portainer:  https://<portainer domain> \n \033[0m"
+  echo -e "\033[32m   - traefik dashboard:  https://<traefik domain>/dashboard/ \n \033[0m"
+  echo -e "\033[32m   - seafile:  https://<seafile domain> \n \033[0m"
+
+  # ============ after seafile install notification ===============
+  echo -e "\033[32m !!! Please logon https://<seafile domain> and replace \n \033[0m"
+  echo -e "\033[32m   - SERVICE_URL \n \033[0m"
+  echo -e "\033[32m   - FILE_SERVER_ROOT \n \033[0m"
+  echo -e "\033[32m replace URLs with https://<seafile domain> \n \033[0m"
+
+  exit
+fi
+
+# ============ install prometheus stack ===============
+if [ $key_prom == "y" ];then
+  rm docker_install.sh
+  curl -L https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/seafile_install.sh \
+    -o seafile_install.sh
+  bash ./seafile_install.sh
 fi

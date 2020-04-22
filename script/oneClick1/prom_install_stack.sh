@@ -1,11 +1,13 @@
 #!/bin/bash
 
-# ============ create seafile folders ===============
-sudo mkdir -p /app_data/seafile/data
-sudo mkdir -p /app_data/seafile/db
+# ============ create prom folders ===============
+sudo mkdir -p /app_data/monitor/prometheus
+sudo mkdir -p /app_data/monitor/alertmanager
+sudo mkdir -p /app_data/monitor/grafana/provisioning
+mkdir -p ./prom/prom ./prom/alertmanager ./prom/grafama/provisioning
 
 # ============ get inputs ===============
-curl -L https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/seafile.yml -o seafile.yml
+curl -L https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/portainer-agent-stack.yml -o ./prom/portainer-agent-stack.yml
 
 echo -e -n "\033[32m Input mySQL DB password : \033[0m"
 read mysql_pass
