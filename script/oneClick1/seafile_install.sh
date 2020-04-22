@@ -27,7 +27,7 @@ sed -i "s/seafile_domain/$seafile_domain/g" seafile.yml
 
 # ============ install seafile ===============
 echo -e "\033[32m Installing seafile ... \n \033[0m"
-docker stack deploy --compose-file=seafile.yml seafile
+sudo docker stack deploy --compose-file=seafile.yml seafile
 
 
 

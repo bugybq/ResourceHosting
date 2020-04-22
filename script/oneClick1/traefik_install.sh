@@ -33,7 +33,7 @@ sed -i "s/cert_email/$traefik_email/g" traefik_conf.toml
 sudo mkdir -p /app_data/traefik/conf /app_data/traefik/conf/acme
 sudo mv -f traefik_conf.toml /app_data/traefik/conf/traefik_conf.toml
 
-docker stack deploy --compose-file=traefik.yml ingress_traefik
+sudo docker stack deploy --compose-file=traefik.yml ingress_traefik
 
 echo -e "\033[32m traefik installed \n \n \033[0m"
 echo -e "\033[32m traefik is activited as reverse proxy... \n \n \033[0m"

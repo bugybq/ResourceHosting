@@ -54,4 +54,4 @@ sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 docker-compose --version
 
 echo -e "\033[32m Apply current user to docker group (no need sodu for docker)... \n \033[0m"
-newgrp docker 
+#newgrp docker 

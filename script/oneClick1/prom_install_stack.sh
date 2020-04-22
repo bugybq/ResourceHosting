@@ -38,7 +38,7 @@ chown -R 65534 ./app_data/monitor/prometheus
 
 # ============ install seafile ===============
 echo -e "\033[32m Installing prometheus stack ... \n \033[0m"
-docker stack deploy --compose-file=portainer-agent-stack.yml monitor
+sudo docker stack deploy --compose-file=portainer-agent-stack.yml monitor
 
 echo -e "\033[32m Prometheus stack installed... \n \033[0m"
 

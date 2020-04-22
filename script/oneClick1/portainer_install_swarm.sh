@@ -3,12 +3,12 @@
 # ============ enable docker swarm mode ===============
 # initialize docker swarm...
 echo -e "\033[32m Initializing swarm mode... \n \033[0m"
-docker swarm init
+sudo docker swarm init
 
 # ============ create new docker network for between app communication ===============
 # create docker network app_net...
 echo -e "\033[32m Creating docker network "app_net"... \n \033[0m"
-docker network create \
+sudo docker network create \
   --driver=overlay \
   --subnet=172.33.0.0/16 \
   --gateway=172.33.0.1 \
@@ -23,5 +23,5 @@ curl -L https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/o
 echo -e -n "\033[32m Domain for portainer dashboard access: (e.g. portainer.mydomain.com) : \033[0m"
 read portainer_domain
 sed -i "s/portainer_domain/$portainer_domain/g" portainer-agent-stack.yml
-docker stack deploy --compose-file=portainer-agent-stack.yml portainer
+sudo docker stack deploy --compose-file=portainer-agent-stack.yml portainer
 echo -e "\033[32m Portainer installed... \n \n \033[0m"
