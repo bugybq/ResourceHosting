@@ -4,7 +4,8 @@
 sudo mkdir -p /app_data/monitor/prometheus
 sudo mkdir -p /app_data/monitor/alertmanager
 sudo mkdir -p /app_data/monitor/grafana/provisioning
-mkdir -p ./prom/prom ./prom/alertmanager ./prom/grafama/provisioning
+mkdir -p ./prom/alertmanager ./prom/prometheus \
+  ./prom/grafana/provisioning/datasources ./prom/grafana/provisioning/dashboards  \
 
 # ============ get inputs ===============
 curl -L https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/portainer-agent-stack.yml -o ./prom/portainer-agent-stack.yml

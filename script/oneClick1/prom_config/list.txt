@@ -1,0 +1,7 @@
+https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/prom_config/alertmanager/config.yml
+https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/prom_config/grafana/provisioning/dashboards/dashboard.yml
+https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/prom_config/grafana/provisioning/dashboards/DockerPrometheusMonitoring-1571332751387.json
+https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/prom_config/grafana/provisioning/datasources/datasource.yml
+https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/prom_config/grafana/config.monitoring
+https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/prom_config/prometheus/alert.rules
+https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/prom_config/prometheus/prometheus.yml
