@@ -30,7 +30,7 @@ sed -i "s/grafana_domain/$grafana_domain/g" prom-stack.yml
 sed -i "s/grafana_pass/$grafana_pass/g" ./prom/grafana/config.monitoring
 
 # ============ move all config files to /app_data ===============
-sudo mv ./prom/* /app_data/monitor/
+sudo mv -f ./prom/* /app_data/monitor/
 
 # ============ set folder permissions for grafana and prometheus ===============
 sudo chown -R 472 /app_data/monitor/grafana/
