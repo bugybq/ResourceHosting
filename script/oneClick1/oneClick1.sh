@@ -49,7 +49,7 @@ fi
 
 # ============ install traefik ===============
 if [ $key_after_portainer == "y" ];then
-  rm portainer_install_swarm.s
+  rm portainer_install_swarm.sh
   rm portainer-agent-stack.yml
   wget https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/traefik_install.sh -N
   bash ./traefik_install.sh
