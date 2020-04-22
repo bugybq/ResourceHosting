@@ -27,7 +27,7 @@ wget https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneC
 
 # sed -i 's/被替换的内容/要替换成的内容/' file        -i 直接修改并保存
 sed -i "s/traefik_domain/$traefik_domain/g" traefik.yml
-sed -i "s/pass_string/$pass_string/g" traefik.yml
+sed -i "s#pass_string#$pass_string#g" traefik.yml
 sed -i "s/cert_email/$traefik_email/g" traefik_conf.toml
 
 sudo mkdir -p /app_data/traefik/conf /app_data/traefik/conf/acme
