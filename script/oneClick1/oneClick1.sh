@@ -55,3 +55,30 @@ if [ $key_after_portainer == "y" ];then
     -o traefik_install.sh
   bash ./traefik_install.sh
 fi
+
+# ============ continue to install seafile? ===============
+echo -e -n "\033[32m Continue to install seafile? [yes(y)/no(n)] :  \033[0m"
+read key_seafile
+
+while [ $key_seafile != "y" ] && [ $key_seafile != "n" ] 
+do
+  echo -e -n "\033[32m Continue to install traefik? [yes(y)/no(n)] :  \033[0m"
+  read key_seafile
+done
+
+if [ $key_seafile == "n" ];then
+  rm traefik_install.sh
+  rm traefik.yml
+  echo -e "\033[32m Access services with urls: \n \033[0m"
+  echo -e "\033[32m   - portainer:  https://<portainer domain> \n \033[0m"
+  echo -e "\033[32m   - traefik dashboard:  https://<traefik domain>/dashboard/ \n \033[0m"
+  exit
+fi
+
+# ============ install seafile ===============
+if [ $key_seafile == "y" ];then
+  rm docker_install.sh
+  curl -L https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/traefik_install.sh \
+    -o traefik_install.sh
+  bash ./traefik_install.sh
+fi
