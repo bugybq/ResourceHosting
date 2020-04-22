@@ -1,36 +1,44 @@
 #!/bin/bash
 
 # ============ create prom folders ===============
-sudo mkdir -p /app_data/monitor/prometheus
-sudo mkdir -p /app_data/monitor/alertmanager
-sudo mkdir -p /app_data/monitor/grafana/provisioning
+sudo mkdir -p /app_data/monitor/
+#sudo mkdir -p /app_data/monitor/prometheus
+#sudo mkdir -p /app_data/monitor/alertmanager
+#sudo mkdir -p /app_data/monitor/grafana/provisioning
 mkdir -p ./prom/alertmanager ./prom/prometheus \
   ./prom/grafana/provisioning/datasources ./prom/grafana/provisioning/dashboards  \
 
-# ============ get inputs ===============
-curl -L https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/portainer-agent-stack.yml -o ./prom/portainer-agent-stack.yml
+# ============ downloads lots of files ===============
+curl -L https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/portainer-agent-stack.yml -o portainer-agent-stack.yml
+sudo apt instll wget -y
+wget https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/prom_config/list.txt -q
+wget -i list.txt -P ./prom -q
+mv ./prom/config.yml ./prom/alertmanager/config.yml
+mv ./prom/dashboard.yml ./prom/grafana/provisioning/dashboards/dashboard.yml
+mv ./prom/DockerPrometheusMonitoring-1571332751387.json ./prom/grafana/provisioning/dashboards/DockerPrometheusMonitoring-1571332751387.json
+mv ./prom/datasource.yml ./prom/grafana/provisioning/datasources/datasource.yml
+mv ./prom/config.monitoring ./prom/grafana/config.monitoring
+mv ./prom/alert.rules ./prom/prometheus/alert.rules
+mv ./prom/prometheus.yml ./prom/prometheus/prometheus.yml
 
-echo -e -n "\033[32m Input mySQL DB password : \033[0m"
-read mysql_pass
+# ============ get grafana domain and password ===============
+echo -e -n "\033[32m Domain for grafana : (e.g. monitor.mydomain.com) : \033[0m"
+read grafana_domain
+echo -e -n "\033[32m Set your grafana password : \033[0m"
+read grafana_pass
+sed -i "s/grafana_domain/$grafana_domain/g" prom-stack.yml
+sed -i "s/grafana_pass/$grafana_pass/g" ./prom/grafana/config.monitoring
 
-echo -e -n "\033[32m Input Admin email for logon : \033[0m"
-read admin_email
+# ============ move all config files to /app_data ===============
+mv ./prom/* /app_data/monitor/
 
-echo -e -n "\033[32m Input Admin password : \033[0m"
-read admin_pass
-
-echo -e -n "\033[32m Domain for seafile access: (e.g. seafile.mydomain.com) : \033[0m"
-read seafile_domain
-
-# ============ update yaml ===============
-sed -i "s/db_pass/$mysql_pass/g" seafile.yml
-sed -i "s/admin@email.com/$admin_email/g" seafile.yml
-sed -i "s/admin_pass/$admin_pass/g" seafile.yml
-sed -i "s/seafile_domain/$seafile_domain/g" seafile.yml
+# ============ set folder permissions for grafana and prometheus ===============
+chown -R 472 ./app_data/monitor/grafana
+chown -R 65534 ./app_data/monitor/prometheus
 
 # ============ install seafile ===============
-echo -e "\033[32m Installing seafile ... \n \033[0m"
-docker stack deploy --compose-file=seafile.yml seafile
+echo -e "\033[32m Installing prometheus stack ... \n \033[0m"
+docker stack deploy --compose-file=portainer-agent-stack.yml monitor
 
-
+echo -e "\033[32m Prometheus stack installed... \n \033[0m"
 

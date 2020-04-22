@@ -117,3 +117,19 @@ if [ $key_prom == "y" ];then
     -o seafile_install.sh
   bash ./seafile_install.sh
 fi
+
+echo -e "\033[32m Access services with urls: \n \033[0m"
+echo -e "\033[32m   - portainer:  https://<portainer domain> \n \033[0m"
+echo -e "\033[32m   - traefik dashboard:  https://<traefik domain>/dashboard/ \n \033[0m"
+echo -e "\033[32m   - seafile:  https://<seafile domain> \n \033[0m"
+echo -e "\033[32m   - grafana:  https://<grafana domain> \n \033[0m"
+# ============ after seafile install notification ===============
+echo -e "\033[32m \n \n !!! Please logon https://<seafile domain> and replace \n \033[0m"
+echo -e "\033[32m   - SERVICE_URL \n \033[0m"
+echo -e "\033[32m   - FILE_SERVER_ROOT \n \033[0m"
+echo -e "\033[32m replace URLs with https://<seafile domain> \n \033[0m"
+
+echo -e "\033[32m \n \n !!! traefik only exposes port 80/443 \n \033[0m"
+echo -e "\033[32m !!! for security consideration, the following ports should be closed on FW/SG \n \033[0m"
+echo -e "\033[32m     - Portainer: 8000,9000 \n \033[0m"
+echo -e "\033[32m     - Prometheus stack: 9090,9100,9093,8080,3000 \n \033[0m"
