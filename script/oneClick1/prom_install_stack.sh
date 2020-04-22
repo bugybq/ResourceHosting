@@ -33,8 +33,8 @@ sed -i "s/grafana_pass/$grafana_pass/g" ./prom/grafana/config.monitoring
 sudo mv ./prom/* /app_data/monitor/
 
 # ============ set folder permissions for grafana and prometheus ===============
-chown -R 472 ./app_data/monitor/grafana
-chown -R 65534 ./app_data/monitor/prometheus
+sudo chown -R 472 /app_data/monitor/grafana/
+sudo chown -R 65534 /app_data/monitor/prometheus/
 
 # ============ install seafile ===============
 echo -e "\033[32m Installing prometheus stack ... \n \033[0m"
