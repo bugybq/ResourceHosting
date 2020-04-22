@@ -132,5 +132,3 @@ echo -e "\033[32m \n \n !!! traefik only exposes port 80/443 \n \033[0m"
 echo -e "\033[32m !!! for security consideration, the following ports should be closed on FW/SG \n \033[0m"
 echo -e "\033[32m     - Portainer: 8000,9000 \n \033[0m"
 echo -e "\033[32m     - Prometheus stack: 9090,9100,9093,8080,3000 \n \033[0m"
-rm prom_install_stack.sh
-rm prom-stack.yml
