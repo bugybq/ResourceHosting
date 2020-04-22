@@ -49,7 +49,8 @@ fi
 
 # ============ install traefik ===============
 if [ $key_after_portainer == "y" ];then
-  rm docker_install.sh
+  rm portainer_install_swarm.s
+  rm portainer-agent-stack.yml
   wget https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/traefik_install.sh -N
   bash ./traefik_install.sh
 fi
@@ -75,7 +76,8 @@ fi
 
 # ============ install seafile ===============
 if [ $key_seafile == "y" ];then
-  rm docker_install.sh
+  rm traefik_ins
+  rm traefik.yml
   wget https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/seafile_install.sh -N
   bash ./seafile_install.sh
 fi
@@ -109,7 +111,8 @@ fi
 
 # ============ install prometheus stack ===============
 if [ $key_prom == "y" ];then
-  rm docker_install.sh
+  rm seafile_ins
+  rm seafile.yml
   wget https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/seafile_install.sh -N
   bash ./seafile_install.sh
 fi
@@ -129,3 +132,5 @@ echo -e "\033[32m \n \n !!! traefik only exposes port 80/443 \n \033[0m"
 echo -e "\033[32m !!! for security consideration, the following ports should be closed on FW/SG \n \033[0m"
 echo -e "\033[32m     - Portainer: 8000,9000 \n \033[0m"
 echo -e "\033[32m     - Prometheus stack: 9090,9100,9093,8080,3000 \n \033[0m"
+rm prom_install_stack.sh
+rm prom-stack.yml
