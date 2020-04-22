@@ -13,12 +13,20 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /app_data/traefik/conf/traefik_conf.toml:/etc/traefik/traefik.toml:ro
       - /app_data/traefik/conf/acme:/etc/traefik/acme
+    #deploy:
+    #  mode: replicated
+    #  replicas: 1    
     labels:
       - "traefik.enable=true"
+      # define a http router called "api" (by default, http routers will accept requests from all entry   points)
       - "traefik.http.routers.api.rule=Host(`traefik_domain`)"
+      # router will send requests to service "api@internal"
       - "traefik.http.routers.api.service=api@internal"
+      # config a basicauth middleware and assign it to router "api"
       - "traefik.http.routers.api.middlewares=auth"
       - "traefik.http.middlewares.auth.basicauth.users=pass_string"
+      # use certificatesResolvers "certgen" to generate certificate
+      # when no tls.domains is set in router, certificatesResolver will look into rule=Host
       - "traefik.http.routers.api.tls=true"
       - "traefik.http.routers.api.tls.certresolver=certgen"
 

@@ -20,6 +20,8 @@ echo -e -n "\033[32m Email address for applying TLS certificates : \033[0m"
 read traefik_email
 
 # ============ update yml and toml file ===============
+echo -e "\033[32m Installing traefik... \n \n \033[0m"
+
 curl -L https://github.com/bugybq/ResourceHosting/blob/master/script/oneClick1/traefik_conf.toml -o traefik_conf.toml
 curl -L https://github.com/bugybq/ResourceHosting/blob/master/script/oneClick1/traefik.yml -o traefik.yml
 
@@ -33,3 +35,5 @@ sudo mv -f traefik_conf.toml /app_data/traefik/conf/traefik_conf.toml
 
 docker stack deploy --compose-file=traefik.yml ingress_traefik
 
+echo -e "\033[32m traefik installed \n \n \033[0m"
+echo -e "\033[32m traefik is activited as reverse proxy... \n \n \033[0m"
