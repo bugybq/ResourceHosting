@@ -1,9 +1,9 @@
 #!/bin/bash
 
-
+sudo apt install wget -y
 # ============ install docker and compose ===============
 echo -e "\033[32m Install Docker and Docker Compose... \n \033[0m"
-curl -L https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/docker_install.sh -o docker_install.sh
+wget https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/docker_install.sh -N
 bash docker_install.sh
 
 echo -e "\033[32m Docker/docker-compose installed... \n \n \033[0m"
@@ -26,8 +26,7 @@ fi
 # ============ install portainer ===============
 if [ $key_after_docker == "y" ];then
   rm docker_install.sh
-  curl -L https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/portainer_install_swarm.sh \
-    -o portainer_install_swarm.sh
+  wget https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/portainer_install_swarm.sh -N
   bash ./portainer_install_swarm.sh
 fi
 
@@ -51,8 +50,7 @@ fi
 # ============ install traefik ===============
 if [ $key_after_portainer == "y" ];then
   rm docker_install.sh
-  curl -L https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/traefik_install.sh \
-    -o traefik_install.sh
+  wget https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/traefik_install.sh -N
   bash ./traefik_install.sh
 fi
 
@@ -78,8 +76,7 @@ fi
 # ============ install seafile ===============
 if [ $key_seafile == "y" ];then
   rm docker_install.sh
-  curl -L https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/seafile_install.sh \
-    -o seafile_install.sh
+  wget https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/seafile_install.sh -N
   bash ./seafile_install.sh
 fi
 
@@ -113,8 +110,7 @@ fi
 # ============ install prometheus stack ===============
 if [ $key_prom == "y" ];then
   rm docker_install.sh
-  curl -L https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/seafile_install.sh \
-    -o seafile_install.sh
+  wget https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/seafile_install.sh -N
   bash ./seafile_install.sh
 fi
 

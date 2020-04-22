@@ -17,8 +17,7 @@ sudo docker network create \
 # ============ install portainer ===============
 # deploy portainer stack...
 echo -e "\033[32m Installing portainer... \n \033[0m"
-curl -L https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/portainer-agent-stack.yml \
-   -o portainer-agent-stack.yml
+wget https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/portainer-agent-stack.yml -N
 
 echo -e -n "\033[32m Domain for portainer dashboard access: (e.g. portainer.mydomain.com) : \033[0m"
 read portainer_domain

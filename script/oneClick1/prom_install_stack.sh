@@ -9,7 +9,7 @@ mkdir -p ./prom/alertmanager ./prom/prometheus \
   ./prom/grafana/provisioning/datasources ./prom/grafana/provisioning/dashboards  \
 
 # ============ downloads lots of files ===============
-curl -L https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/portainer-agent-stack.yml -o portainer-agent-stack.yml
+wget https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/portainer-agent-stack.yml -N
 sudo apt instll wget -y
 wget https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/prom_config/list.txt -q
 wget -i list.txt -P ./prom -q

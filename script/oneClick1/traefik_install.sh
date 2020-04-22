@@ -22,8 +22,8 @@ read traefik_email
 # ============ update yml and toml file ===============
 echo -e "\033[32m Installing traefik... \n \n \033[0m"
 
-curl -L https://github.com/bugybq/ResourceHosting/blob/master/script/oneClick1/traefik_conf.toml -o traefik_conf.toml
-curl -L https://github.com/bugybq/ResourceHosting/blob/master/script/oneClick1/traefik.yml -o traefik.yml
+wget https://github.com/bugybq/ResourceHosting/blob/master/script/oneClick1/traefik_conf.toml -N
+wget https://github.com/bugybq/ResourceHosting/blob/master/script/oneClick1/traefik.yml -N
 
 # sed -i 's/被替换的内容/要替换成的内容/' file        -i 直接修改并保存
 sed -i "s/traefik_domain/$traefik_domain/g" traefik.yml
