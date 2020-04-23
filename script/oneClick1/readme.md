@@ -24,6 +24,19 @@ bash oneClick1.sh
 
 ```
 
+## enable webdav for seafile
+
+```bash
+vim /app_data/seafile/data/seafile/conf/seafdav.conf
+
+[WEBDAV]
+enabled = true
+port = 8080
+fastcgi = true
+share_name = /seafdav
+
+
+```
 port 8000,9000
 
 
