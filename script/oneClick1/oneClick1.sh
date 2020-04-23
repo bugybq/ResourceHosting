@@ -1,5 +1,6 @@
 #!/bin/bash
 
+sudo apt-get update -y
 sudo apt install wget -y
 # ============ install docker and compose ===============
 echo -e "\033[32m Install Docker and Docker Compose... \n \033[0m"
