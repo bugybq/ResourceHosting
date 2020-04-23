@@ -3,7 +3,7 @@
 
 # ============ apt update first ===============
 echo -e "\033[32m apt update... \n \033[0m"
-sudo apt-get update 
+sudo apt-get update -y
 
 # ============ set timezone to Shanghai ===============
 echo -e "\033[32m Set timezone to Asia/Shanghai... \n \033[0m"
