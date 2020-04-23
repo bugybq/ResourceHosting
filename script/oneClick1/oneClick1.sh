@@ -20,6 +20,7 @@ done
 # exit when 'n'
 if [ $key_after_docker == "n" ];then
   rm docker_install.sh
+  newgrp docker
   exit
 fi
 
@@ -44,6 +45,7 @@ if [ $key_after_portainer == "n" ];then
   rm portainer_install_swarm.sh
   rm portainer-agent-stack.yml
   echo -e "\033[32m Access portainer with https://<yourdomain>:9000 \n \033[0m"
+  newgrp docker
   exit
 fi
 
@@ -71,6 +73,7 @@ if [ $key_seafile == "n" ];then
   echo -e "\033[32m Access services with urls: \n \033[0m"
   echo -e "\033[32m   - portainer:  https://<portainer domain> \n \033[0m"
   echo -e "\033[32m   - traefik dashboard:  https://<traefik domain>/dashboard/ \n \033[0m"
+  newgrp docker
   exit
 fi
 
@@ -105,7 +108,7 @@ if [ $key_prom == "n" ];then
   echo -e "\033[32m   - SERVICE_URL \n \033[0m"
   echo -e "\033[32m   - FILE_SERVER_ROOT \n \033[0m"
   echo -e "\033[32m replace URLs with https://<seafile domain> \n \033[0m"
-
+  newgrp docker
   exit
 fi
 
@@ -115,20 +118,22 @@ if [ $key_prom == "y" ];then
   rm seafile.yml
   wget https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/prom_install_stack.sh -O prom_install_stack.sh
   bash ./prom_install_stack.sh
+  echo -e "\033[32m Access services with urls: \n \033[0m"
+  echo -e "\033[32m   - portainer:  https://<portainer domain> \n \033[0m"
+  echo -e "\033[32m   - traefik dashboard:  https://<traefik domain>/dashboard/ \n \033[0m"
+  echo -e "\033[32m   - seafile:  https://<seafile domain> \n \033[0m"
+  echo -e "\033[32m   - grafana:  https://<grafana domain> \n \033[0m"
+  # ============ after seafile install notification ===============
+  echo -e "\033[32m \n \n !!! Please logon https://<seafile domain> and replace \n \033[0m"
+  echo -e "\033[32m   - SERVICE_URL \n \033[0m"
+  echo -e "\033[32m   - FILE_SERVER_ROOT \n \033[0m"
+  echo -e "\033[32m replace URLs with https://<seafile domain> \n \033[0m"
+  
+  echo -e "\033[32m \n \n !!! traefik only exposes port 80/443 \n \033[0m"
+  echo -e "\033[32m !!! for security consideration, the following ports should be closed on FW/SG \n \033[0m"
+  echo -e "\033[32m     - Portainer: 8000,9000 \n \033[0m"
+  echo -e "\033[32m     - Prometheus stack: 9090,9100,9093,8080,3000 \n \033[0m"
+  newgrp docker
 fi
 
-echo -e "\033[32m Access services with urls: \n \033[0m"
-echo -e "\033[32m   - portainer:  https://<portainer domain> \n \033[0m"
-echo -e "\033[32m   - traefik dashboard:  https://<traefik domain>/dashboard/ \n \033[0m"
-echo -e "\033[32m   - seafile:  https://<seafile domain> \n \033[0m"
-echo -e "\033[32m   - grafana:  https://<grafana domain> \n \033[0m"
-# ============ after seafile install notification ===============
-echo -e "\033[32m \n \n !!! Please logon https://<seafile domain> and replace \n \033[0m"
-echo -e "\033[32m   - SERVICE_URL \n \033[0m"
-echo -e "\033[32m   - FILE_SERVER_ROOT \n \033[0m"
-echo -e "\033[32m replace URLs with https://<seafile domain> \n \033[0m"
 
-echo -e "\033[32m \n \n !!! traefik only exposes port 80/443 \n \033[0m"
-echo -e "\033[32m !!! for security consideration, the following ports should be closed on FW/SG \n \033[0m"
-echo -e "\033[32m     - Portainer: 8000,9000 \n \033[0m"
-echo -e "\033[32m     - Prometheus stack: 9090,9100,9093,8080,3000 \n \033[0m"
