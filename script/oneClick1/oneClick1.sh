@@ -2,6 +2,8 @@
 
 sudo apt-get update -y
 sudo apt install wget -y
+sudo apt install -y apache2-utils
+
 # ============ install docker and compose ===============
 echo -e "\033[32m Install Docker and Docker Compose... \n \033[0m"
 wget https://raw.githubusercontent.com/bugybq/ResourceHosting/master/script/oneClick1/docker_install.sh -O docker_install.sh
