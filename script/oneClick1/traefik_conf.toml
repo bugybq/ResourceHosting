@@ -19,8 +19,8 @@
     [certificatesResolvers.certgen.acme]
       email = "cert_email"
       storage = "/etc/traefik/acme/acme.json"
-      caServer = "https://acme-staging-v02.api.letsencrypt.org/directory"  #LetsEncrypt staging server for testing
-      # caServer = "https://acme-v02.api.letsencrypt.org/directory"
+      #caServer = "https://acme-staging-v02.api.letsencrypt.org/directory"  #LetsEncrypt staging server for testing
+      caServer = "https://acme-v02.api.letsencrypt.org/directory"
       [certificatesResolvers.certgen.acme.httpChallenge]
         entryPoint = "web" # port 80 must be opened on host FW/SG
 
